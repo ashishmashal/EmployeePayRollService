@@ -19,8 +19,12 @@ public class NIOFileAPITest {
         Assertions.assertTrue(Files.exists(homePath));
 
         Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NOI);
+
         if (Files.exists(playPath))
             FilesUtils.deleteFiles(playPath.toFile());
+
+        if (Files.exists(playPath)) FilesUtils.deleteFiles(playPath.toFile());
+
         Assertions.assertTrue(Files.notExists(playPath));
 
         Files.createDirectories(playPath);
@@ -36,6 +40,7 @@ public class NIOFileAPITest {
             Assertions.assertTrue(Files.exists(tempFile));
 
         });
+
         Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
         Files.newDirectoryStream(playPath).forEach(System.out::println);
         Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp"))
@@ -43,3 +48,4 @@ public class NIOFileAPITest {
 
     }
 }
+
