@@ -19,7 +19,9 @@ public class NIOFileAPITest {
         Assertions.assertTrue(Files.exists(homePath));
 
         Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NOI);
+
         if (Files.exists(playPath)) FilesUtils.deleteFiles(playPath.toFile());
+
         Assertions.assertTrue(Files.notExists(playPath));
 
         Files.createDirectories(playPath);
