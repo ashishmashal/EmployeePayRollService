@@ -19,9 +19,12 @@ public class NIOFileAPITest {
         Assertions.assertTrue(Files.exists(homePath));
 
         Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NOI);
-
+<<<<<<<<< Temporary merge branch 1
         if (Files.exists(playPath)) FilesUtils.deleteFiles(playPath.toFile());
-
+=========
+        if (Files.exists(playPath))
+            FilesUtils.deleteFiles(playPath.toFile());
+>>>>>>>>> Temporary merge branch 2
         Assertions.assertTrue(Files.notExists(playPath));
 
         Files.createDirectories(playPath);
@@ -37,6 +40,7 @@ public class NIOFileAPITest {
             Assertions.assertTrue(Files.exists(tempFile));
 
         });
+<<<<<<<<< Temporary merge branch 1
         // List Files,Directories as well as Files with Extension
         Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
         Files.newDirectoryStream(playPath).forEach(System.out::println);
@@ -45,3 +49,12 @@ public class NIOFileAPITest {
     }
 }
 
+=========
+        Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
+        Files.newDirectoryStream(playPath).forEach(System.out::println);
+        Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp"))
+                .forEach(System.out::println);
+
+    }
+}
+>>>>>>>>> Temporary merge branch 2
