@@ -1,9 +1,8 @@
 package com.bridgelabz;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JDBCOprations {
 	String jdbcURL = "jdbc:mysql://localhost:3306/Employee_Payroll?useSSL=false";
@@ -43,5 +42,24 @@ public class JDBCOprations {
 			e.printStackTrace();
 		}
 		return true;
+	}
+
+	public List<EmployeePayrollData> select(){
+		String sql="SELECT * FROM emp";
+		List<EmployeePayrollData> employeeDataList=new ArrayList<>();
+		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
+		     Statement stmt = conn.createStatement()
+		){	ResultSet resultSet=stmt.executeQuery(sql);
+			while (resultSet.next()){
+				int id=resultSet.getInt("id");
+				String name=resultSet.getString("name");
+				double salary=resultSet.getDouble("salary");
+				String startdate=resultSet.getString("startdate");
+				employeeDataList.add(new EmployeePayrollData(id,name, (long) salary,startdate));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return employeeDataList;
 	}
 }

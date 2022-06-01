@@ -3,6 +3,8 @@ package com.bridgelabz;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class JDBCTest {
 	@Test
 	public void giveDataToCreateTable_IntoDatabase(){
@@ -13,7 +15,17 @@ public class JDBCTest {
 	@Test
 	public void GivenDataInsertDataInto_Database(){
 		JDBCOprations jdbcDemo= new JDBCOprations();
-		boolean ecpected = jdbcDemo.insert();
+		jdbcDemo.insert();
 		Assertions.assertTrue(true);
+	}
+
+	@Test
+	public void GivenDataSelectDataFromTable_Database(){
+		JDBCOprations jdbcDemo= new JDBCOprations();
+		List<EmployeePayrollData> employeeData=jdbcDemo.select();
+		for(EmployeePayrollData employeeData1:employeeData){
+			System.out.println(employeeData1);
+		}
+		Assertions.assertEquals(1,employeeData.size());
 	}
 }
