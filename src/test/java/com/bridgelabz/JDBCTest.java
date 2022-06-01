@@ -10,4 +10,10 @@ public class JDBCTest {
 		boolean expected = jdbcDemo.createTable();
 		Assertions.assertTrue(true);
 	}
+	@Test
+	public void GivenDataInsertDataInto_Database(){
+		JDBCOprations jdbcDemo= new JDBCOprations();
+		boolean ecpected = jdbcDemo.insert();
+		Assertions.assertTrue(true);
+	}
 }

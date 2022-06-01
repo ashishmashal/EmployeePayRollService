@@ -29,4 +29,19 @@ public class JDBCOprations {
 		}
 		return true;
 	}
+
+	public boolean insert() {
+		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
+		     Statement stmt = conn.createStatement()
+		) {
+			String sql = "INSERT INTO emp VALUES (1,'Vicky','500000','2022-05-25')";
+
+			stmt.executeUpdate(sql);
+			System.out.println("Inserted Data in given database...");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 }
