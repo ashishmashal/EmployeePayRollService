@@ -35,4 +35,18 @@ public class JDBCTest {
 		jdbcDemo.selectUsingWhere();
 		Assertions.assertTrue(true);
 	}
+
+	@Test
+	public void GivenDataAlter_Database(){
+		JDBCOprations jdbcDemo= new JDBCOprations();
+		 jdbcDemo.alter();
+		Assertions.assertTrue(true);
+	}
+
+	@Test
+	public void GivenDataUpdate_Database(){
+		JDBCOprations jdbcDemo= new JDBCOprations();
+		jdbcDemo.update();
+		Assertions.assertTrue(true);
+	}
 }

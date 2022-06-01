@@ -33,7 +33,7 @@ public class JDBCOprations {
 		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
 		     Statement stmt = conn.createStatement()
 		) {
-			String sql = "INSERT INTO emp VALUES (1,'Vicky','500000','2022-05-25')";
+			String sql = "INSERT INTO emp VALUES (2,'Ashish','500000','2022-03-25','M')";
 
 			stmt.executeUpdate(sql);
 			System.out.println("Inserted Data in given database...");
@@ -77,6 +77,36 @@ public class JDBCOprations {
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}
+		return true;
+	}
+
+	public boolean alter() {
+		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
+		     Statement stmt = conn.createStatement()
+		) {
+			String sql = "ALTER TABLE emp ADD gender varchar(50)";
+
+			stmt.executeUpdate(sql);
+			System.out.println(sql);
+			System.out.println(" altered table in given database...");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	public boolean update() {
+		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
+		     Statement stmt = conn.createStatement()
+		) {
+			String sql = "UPDATE emp set gender = 'M' where name ='Ashish' or name ='Vicky'";
+
+			stmt.executeUpdate(sql);
+			System.out.println("Updated Data in given database...");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return true;
 	}
