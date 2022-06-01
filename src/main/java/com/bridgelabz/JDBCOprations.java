@@ -62,4 +62,22 @@ public class JDBCOprations {
 		}
 		return employeeDataList;
 	}
+
+	public boolean selectUsingWhere(){
+		String sql1="SELECT * FROM emp WHERE startDate BETWEEN CAST('2022-03-25' AS DATE) AND DATE(NOW())";
+		try (Connection conn = DriverManager.getConnection(jdbcURL, userName, password);
+		     Statement stmt = conn.createStatement()
+		){
+			ResultSet resultSet1=stmt.executeQuery(sql1);
+			while (resultSet1.next()) {
+				int numColumns = resultSet1.getMetaData().getColumnCount();
+				for (int i = 1; i <= numColumns; i++) {
+					System.out.println("COLUMN " + i + " = " + resultSet1.getObject(i));
+				}
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return true;
+	}
 }

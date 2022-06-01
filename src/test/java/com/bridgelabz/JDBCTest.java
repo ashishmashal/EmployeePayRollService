@@ -28,4 +28,11 @@ public class JDBCTest {
 		}
 		Assertions.assertEquals(1,employeeData.size());
 	}
+
+	@Test
+	public void GivenDatawhere_Database() {
+		JDBCOprations jdbcDemo= new JDBCOprations();
+		jdbcDemo.selectUsingWhere();
+		Assertions.assertTrue(true);
+	}
 }
